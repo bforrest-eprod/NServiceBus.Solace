@@ -1,4 +1,4 @@
-﻿namespace NServiceBus.Transports.Solace.Administration
+﻿    namespace NServiceBus.Transports.Solace.Administration
 {
     using System;
     using System.Threading.Tasks;
