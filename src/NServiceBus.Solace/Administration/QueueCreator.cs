@@ -7,6 +7,36 @@
 
     internal class QueueCreator : ICreateQueues
     {
+        IContext context = null;
+        ISession session = null;
+        IBrowser browser = null;
+        IQueue queue = null;
+        ContextProperties contextProps = null;
+        SessionProperties sessionProps = null;
+
+        /// <summary>
+        /// config section? https://msdn.microsoft.com/en-us/library/2tw134k3.aspx
+        /// </summary>
+        public QueueCreator()
+        {
+            ContextFactoryProperties cfp = new ContextFactoryProperties();
+            cfp.SolClientLogLevel = SolLogLevel.Warning;
+            cfp.LogToConsoleError();
+            
+            // Must init the API before using any of its artifacts.
+            ContextFactory.Instance.Init(cfp);
+
+            context = ContextFactory.Instance.CreateContext(contextProps, null);
+            contextProps = new ContextProperties();
+            sessionProps = new SessionProperties();
+
+            sessionProps.Host = "ec2-52-91-172-113.compute-1.amazonaws.com";
+            sessionProps.VPNName = "default";
+            sessionProps.UserName = "default";
+
+            session = context.CreateSession(sessionProps, null, null);
+            session.Connect();
+        }
         public Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
         {
             foreach (var receivingAddress in queueBindings.ReceivingAddresses)
