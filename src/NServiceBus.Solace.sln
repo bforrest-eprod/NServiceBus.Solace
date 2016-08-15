@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.Solace", "NServiceBus.Solace\NServiceBus.Solace.csproj", "{06C278AA-7F1F-49CC-9650-A0BCDDA2FA71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventPublish", "ConsoleApplication1\EventPublish.csproj", "{9DD1E809-2864-480E-84F9-D630BD7DA811}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventPublish", "EventPublish\EventPublish.csproj", "{9DD1E809-2864-480E-84F9-D630BD7DA811}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
