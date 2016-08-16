@@ -54,7 +54,7 @@
 
         private void CreateQueueIfNecessary(string address)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
             // *************************************************************************************
             // TL;DR - You should delete all but the first line of this method.

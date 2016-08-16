@@ -11,12 +11,14 @@ namespace NServiceBus.Transports.Solace.Administration
     {
         public Task Subscribe(Type eventType, ContextBag context)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return Task.FromResult(0);
         }
 
         public Task Unsubscribe(Type eventType, ContextBag context)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return Task.FromResult(0);
         }
     }
 }

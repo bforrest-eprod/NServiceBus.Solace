@@ -1,0 +1,26 @@
+On branch develop
+Your branch is ahead of 'origin/develop' by 2 commits.
+  (use "git push" to publish your local commits)
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[32mmodified:   src/EventPublish/EventPublish.csproj[m
+	[32mmodified:   src/EventPublish/Program.cs[m
+	[32mmodified:   src/NServiceBus.Solace.sln[m
+	[32mmodified:   src/NServiceBus.Solace/Administration/QueueCreator.cs[m
+	[32mmodified:   src/NServiceBus.Solace/Administration/SubscriptionManager.cs[m
+	[32mmodified:   src/NServiceBus.Solace/NServiceBus.Solace.csproj[m
+	[32mmodified:   src/NServiceBus.Solace/SolaceTransport.cs[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[36msrc/EventPublish/MessageA.cs[m
+	[36msrc/EventPublish/MessageConsumer.cs[m
+	[36msrc/ExpecptionDrivenDevelopment.txt[m
+	[36msrc/NServiceBus.Solace/Dispatcher.cs[m
+	[36msrc/NServiceBus.Solace/SolaceTransportMessagePump.cs[m
+	[36msrc/NServiceBus.Solace/lib/[m
+
+no changes added to commit (use "git add" and/or "git commit -a")

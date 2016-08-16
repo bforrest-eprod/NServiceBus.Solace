@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using NServiceBus.Routing;
 using NServiceBus.Settings;
+using NServiceBus.Logging;
+using System.Threading.Tasks;
+using NServiceBus.Performance.TimeToBeReceived;
+using NServiceBus.Transports.Solace.Administration;
 
 namespace NServiceBus.Transports.Solace.Connection
 {
@@ -14,18 +18,14 @@ namespace NServiceBus.Transports.Solace.Connection
     /// <returns>The supported factories.</returns>
     public class SolaceTransport : TransportDefinition
     {
+        static ILog log = LogManager.GetLogger<SolaceTransport>();
+
         protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
         {
             return new SolaceTransportInfrastructure(settings, connectionString);
         }
 
-        public override string ExampleConnectionStringForErrorMessage
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override string ExampleConnectionStringForErrorMessage { get; } = "";
     }
 
     public class SolaceTransportInfrastructure : TransportInfrastructure
@@ -48,43 +48,19 @@ namespace NServiceBus.Transports.Solace.Connection
             this.connectionString = connectionString;
         }
 
-        public override IEnumerable<Type> DeliveryConstraints
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override OutboundRoutingPolicy OutboundRoutingPolicy
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override TransportTransactionMode TransactionMode
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override EndpointInstance BindToLocalEndpoint(EndpointInstance instance)
-        {
-            throw new NotImplementedException();
-        }
-
         public override TransportReceiveInfrastructure ConfigureReceiveInfrastructure()
         {
-            throw new NotImplementedException();
+            return new TransportReceiveInfrastructure(
+                messagePumpFactory: () => new SolaceTransportMessagePump(),
+                queueCreatorFactory: () => new QueueCreator(),
+                preStartupCheck: () => Task.FromResult(StartupCheckResult.Success));
         }
 
         public override TransportSendInfrastructure ConfigureSendInfrastructure()
         {
-            throw new NotImplementedException();
+            return new TransportSendInfrastructure(
+                dispatcherFactory: () => new Dispatcher(),
+                preStartupCheck: () => Task.FromResult(StartupCheckResult.Success));
         }
 
         public override TransportSubscriptionInfrastructure ConfigureSubscriptionInfrastructure()
@@ -92,9 +68,44 @@ namespace NServiceBus.Transports.Solace.Connection
             throw new NotImplementedException();
         }
 
+        public override EndpointInstance BindToLocalEndpoint(EndpointInstance instance)
+        {
+            return instance;
+        }
+
         public override string ToTransportAddress(LogicalAddress logicalAddress)
         {
-            throw new NotImplementedException();
+            var endpointInstance = logicalAddress.EndpointInstance;
+            var discriminator = endpointInstance.Discriminator ?? "";
+            var qualifier = logicalAddress.Qualifier ?? "";
+            return string.Concat(endpointInstance.Endpoint, discriminator, qualifier);
+        }
+
+        public override IEnumerable<Type> DeliveryConstraints
+        {
+            get
+            {
+                yield return typeof(DiscardIfNotReceivedBefore);
+            }
+        }
+
+        public override TransportTransactionMode TransactionMode
+        {
+            get
+            {
+                return TransportTransactionMode.SendsAtomicWithReceive;
+            }
+        }
+
+        public override OutboundRoutingPolicy OutboundRoutingPolicy
+        {
+            get
+            {
+                return new OutboundRoutingPolicy(
+                    sends: OutboundRoutingType.Unicast,
+                    publishes: OutboundRoutingType.Unicast,
+                    replies: OutboundRoutingType.Unicast);
+            }
         }
     }
 }
