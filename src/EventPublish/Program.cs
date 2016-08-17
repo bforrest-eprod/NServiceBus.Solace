@@ -44,7 +44,7 @@ namespace EventPublish
             endpointConfiguration.SendFailedMessagesTo("error");
 
             var transport = endpointConfiguration.UseTransport<SolaceTransport>();
-            transport.ConnectionString("host=ec2-54-227-230-129.compute-1.amazonaws.com");
+            transport.ConnectionString("host=admin@ec2-107-21-83-82.compute-1.amazonaws.com");
 
             var startableEndpoint = await Endpoint.Create(endpointConfiguration)
                 .ConfigureAwait(false);

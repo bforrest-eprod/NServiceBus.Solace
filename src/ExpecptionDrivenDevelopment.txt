@@ -50,20 +50,6 @@ mkdir + xcopy = Fail
 
 Change debug outpout to x86 and repeated. Still shot in the head.
 
-	   at SolaceSystems.Solclient.Messaging.Native.MAdapter.MSolClientSetLogCallback(LogCallbackHandler callback, IntPtr user)
-   at SolaceSystems.Solclient.Messaging.Native.ContextFactoryImpl.Init(ContextFactoryProperties props)
-   at SolaceSystems.Solclient.Messaging.ContextFactory.Init(ContextFactoryProperties props)
-   at NServiceBus.Transports.Solace.Administration.QueueCreator..ctor() in C:\GitHub\https---github.com-EnterpriseProductsLP-NServiceBus.Solace.git\src\NServiceBus.Solace\Administration\QueueCreator.cs:line 27
-   at NServiceBus.Transports.Solace.Connection.SolaceTransportInfrastructure.<>c.<ConfigureReceiveInfrastructure>b__3_1() in C:\GitHub\https---github.com-EnterpriseProductsLP-NServiceBus.Solace.git\src\NServiceBus.Solace\SolaceTransport.cs:line 55
-   at NServiceBus.Receiving.<>c__DisplayClass1_0.<Setup>b__2(IBuilder b) in C:\Build\src\NServiceBus.Core\Transports\Receiving.cs:line 50
-   at NServiceBus.CommonObjectBuilder.<>c__DisplayClass12_0`1.<ConfigureComponent>b__0() in C:\Build\src\NServiceBus.Core\ObjectBuilder\Common\CommonObjectBuilder.cs:line 74
-   at NServiceBus.AutofacObjectBuilder.<>c__DisplayClass7_0`1.<NServiceBus.ObjectBuilder.Common.IContainer.Configure>b__0(IComponentContext c) in C:\Build\src\NServiceBus.Core\ObjectBuilder\Autofac\AutofacObjectBuilder.cs:line 80
-   at Autofac.RegistrationExtensions.<>c__DisplayClass10`1.<Register>b__f(IComponentContext c, IEnumerable`1 p) in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
-   at Autofac.Builder.RegistrationBuilder.<>c__DisplayClass1`1.<ForDelegate>b__0(IComponentContext c, IEnumerable`1 p) in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
-   at Autofac.Core.Activators.Delegate.DelegateActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters) in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
-   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters) in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
-   at Autofac.Core.Resolving.InstanceLookup.<Execute>b__0() in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
-   at Autofac.Core.Lifetime.LifetimeScope.GetOrCreateAndShare(Guid id, Func`1 creator) in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
-   at Autofac.Core.Resolving.InstanceLookup.Execute() in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
-   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters) in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
-   at Autofac.Core.Resolving.ResolveOperation.Execute(IComponentRegistration registration, IEnumerable`1 parameters) in C:\Build\src\NServiceBus.Core\Performance\Statistics\CriticalTime\CriticalTimeMonitoring.cs:line 0
+{"Error encountered in interop adapter Unable to load DLL 'libsolclient.dll': The specified module could not be found. (Exception from HRESULT: 0x8007007E) In method: Init"}
+
+xcopy to the publisher folder, where the prog actually runs solved it

@@ -57,6 +57,7 @@
       <HintPath>..\references\Solace\SolaceSystems.Solclient.Messaging.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -86,21 +87,10 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="lib\libsolclient.dll" />
-    <Content Include="lib\libsolclient_64.dll" />
-    <Content Include="lib\LICENSES.txt" />
-    <Content Include="lib\ReadmeFirst.txt" />
-    <Content Include="lib\SolaceSystems.Solclient.Messaging.dll" />
-    <Content Include="lib\SolaceSystems.Solclient.Messaging.xml" />
-    <Content Include="lib\SolaceSystems.Solclient.Messaging_64.dll" />
-    <Content Include="lib\SolaceSystems.Solclient.Messaging_64.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir "$(TargetDir)lib"
-xcopy /y "$(ProjectDir)lib\lib*.dll" "$(TargetDir)lib"
-xcopy /y "$(ProjectDir)lib\lib*.dll" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
